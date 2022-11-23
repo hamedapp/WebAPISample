@@ -1,5 +1,8 @@
 ﻿using System;
 using Infrastructure.Contexs;
+using Infrastructure.Modules;
+using Infrastructure.Repository;
+using Infrastructure.Sevices;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebAPISample
@@ -12,14 +15,18 @@ namespace WebAPISample
             _config = configuration;
         }
         public void ConfigureServices(IServiceCollection services)
-{
+        {
+            services.AddControllers();
+            services.RegisterModules();
+            services.RegisterServices();
+            services.RegisterRepositoris();
             services.AddDbContext<CustomerContext>(opt =>
             {
                 opt.UseInMemoryDatabase("CustomerDb");
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(WebApplication app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -33,15 +40,18 @@ namespace WebAPISample
 
             app.UseHttpsRedirection();
             app.UseRouting();
-            app.UseHealthChecks("/health");
+            //app.UseHealthChecks("/health");
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+            app.MapControllers();
+
+            app.Run();
         }
 
 
-        
+
     }
 }

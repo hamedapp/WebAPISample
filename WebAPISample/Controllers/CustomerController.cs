@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Domain.Interfaces.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPISample.Controllers
@@ -7,14 +7,19 @@ namespace WebAPISample.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        public CustomerController()
+        private readonly ICustomerServcie _customerService;
+        public CustomerController(ICustomerServcie customerServcie)
         {
-
+            _customerService = customerServcie;
         }
+
         [HttpGet]
-        public async Task<IActionResult> Get()
+        [Route("[action]")]
+        public async Task<IActionResult> GetAll()
         {
-            return Ok("OK");
+            var List =  _customerService.GetAll();
+
+            return Ok(List);
         }
 
     }

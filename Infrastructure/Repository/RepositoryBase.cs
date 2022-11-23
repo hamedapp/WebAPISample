@@ -1,40 +1,72 @@
 ﻿using Domain.Interfaces.Entity;
 using Domain.Interfaces.Repository;
+using Infrastructure.Contexs;
 using System.Linq.Expressions;
 
 namespace Infrastructure.Repository
 {
     public class RepositoryBase<T> : IRepositoryBase<T> where T : class, IBaseEntity
     {
+        protected readonly CustomerContext customerContext;
+        public RepositoryBase(CustomerContext context)
+        {
+            customerContext = context;
+        }
 
-        public T Add(T newEntity)
+        public virtual T Add(T newEntity)
+        {
+            var track = customerContext.Set<T>().Add(newEntity);
+
+            return track.Entity;
+        }
+
+        public virtual void Delete(int Id)
+        {
+            var entity = customerContext.Set<T>().Where(x => x.Id == Id).FirstOrDefault();
+
+            if (entity != null)
+            {
+                //maybe soft delete
+                customerContext.Remove(entity);
+
+            }
+            customerContext.SaveChanges();
+        }
+
+        public virtual T Get(int Id)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(int Id)
+        public virtual IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+            var list = customerContext.Set<T>();
+
+            return list;
         }
 
-        public T Get(int Id)
+        public virtual IEnumerable<T> GetAll(Expression<Func<T, bool>> predicate)
         {
-            throw new NotImplementedException();
+            var list = customerContext.Set<T>().Where(predicate);
+
+            return list;
         }
 
-        public IEnumerable<T> GetAll()
+        public virtual T Update(T newEntity)
         {
-            throw new NotImplementedException();
-        }
+            var tempEntity = customerContext.Set<T>().Find(newEntity.Id);
 
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>> predicate)
-        {
-            throw new NotImplementedException();
-        }
+            if (tempEntity != null)
+            {
+                tempEntity.Modified = DateTime.Now;
 
-        public T Update(T newEntity)
-        {
-            throw new NotImplementedException();
+                customerContext.Entry(tempEntity).CurrentValues.SetValues(newEntity);
+
+                customerContext.SaveChanges();
+
+                return customerContext.Entry(newEntity).Entity;
+            }
+            return tempEntity;
         }
     }
 }

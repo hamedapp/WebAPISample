@@ -4,7 +4,7 @@ namespace Domain.Interfaces.Service
 {
     public interface IBaseServices<TEntity, TDto> where TDto : IBaseDto
     {
-        TDto GetAll();
+        List<TDto> GetAll();
 
         TDto Get(int Id);
 
