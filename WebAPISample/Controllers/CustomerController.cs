@@ -7,10 +7,15 @@ namespace WebAPISample.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
+        public CustomerController()
+        {
+
+        }
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             return Ok("OK");
         }
+
     }
 }

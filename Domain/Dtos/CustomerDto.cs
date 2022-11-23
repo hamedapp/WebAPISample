@@ -1,10 +1,7 @@
-﻿using Domain.Interfaces.Dto;
-
-namespace Domain.Dtos
+﻿namespace Domain.Dtos
 {
-    public class CustomerDto : IBaseDto
+    public class CustomerDto : BaseDto
     {
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
