@@ -1,7 +1,7 @@
 ﻿using Domain.Interfaces.Repository;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Infrastructure.Repository
+namespace Domain.Repository
 {
     public static class RepositoryModuleExtention
     {

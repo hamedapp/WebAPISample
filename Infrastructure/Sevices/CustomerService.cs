@@ -4,13 +4,14 @@ using Domain.Entities;
 using Domain.Interfaces.Repository;
 using Domain.Interfaces.Service;
 
-namespace Infrastructure.Sevices
+
+namespace Domain.Sevices
 {
     public class CustomerService : ServiceBase<Customer, CustomerDto>, ICustomerServcie
     {
         private readonly ICustomerRepository _repository;
         private readonly IMapper _mapper;
-        public CustomerService(ICustomerRepository rpository, IMapper mapper) 
+        public CustomerService(ICustomerRepository rpository, IMapper mapper)
             : base(rpository, mapper)
         {
             _repository = rpository;
@@ -23,7 +24,7 @@ namespace Infrastructure.Sevices
             var result = new List<CustomerDto>();
             if (data.Any())
             {
-                 result = _mapper.Map<List<CustomerDto>>(data);
+                result = _mapper.Map<List<CustomerDto>>(data);
 
                 return result;
             }
@@ -34,6 +35,6 @@ namespace Infrastructure.Sevices
         {
             throw new NotImplementedException();
         }
-     
+
     }
 }

@@ -16,21 +16,38 @@ namespace WebAPISample.Controllers
 
         [HttpGet]
         [Route("[action]")]
-        public async Task<IActionResult> GetAll()
+        public IActionResult GetAll()
         {
             var List =  _customerService.GetAll();
 
             return Ok(List);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("[action]")]
-        public async Task<IActionResult> Add(CustomerDto customerDto)
+        public IActionResult Add(CustomerDto customerDto)
         {
             _customerService.Insert(customerDto);
 
             return Ok("Ok");
         }
 
+        [HttpPost]
+        [Route("[action]")]
+        public IActionResult Update(CustomerDto customerDto)
+        {
+            _customerService.Update(customerDto);
+
+            return Ok("Ok");
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        public IActionResult Delete(int Id)
+        {
+            _customerService.Delete(Id);
+
+            return Ok("Ok");
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Infrastructure.Modules
+namespace Domain.Modules
 {
     public static class RegisterModulesExtention
     {

@@ -1,9 +1,9 @@
 ﻿using Domain.Interfaces.Entity;
 using Domain.Interfaces.Repository;
-using Infrastructure.Contexs;
+using Domain.Contexs;
 using System.Linq.Expressions;
 
-namespace Infrastructure.Repository
+namespace Domain.Repository
 {
     public class RepositoryBase<T> : IRepositoryBase<T> where T : class, IBaseEntity
     {

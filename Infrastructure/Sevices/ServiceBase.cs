@@ -3,7 +3,7 @@ using Domain.Dtos;
 using Domain.Entities;
 using Domain.Interfaces.Repository;
 
-namespace Infrastructure.Sevices
+namespace Domain.Sevices
 {
     public class ServiceBase<TEntity, TDto>
         where TEntity : BaseEntity
