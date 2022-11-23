@@ -1,4 +1,6 @@
-﻿namespace Domain.Interfaces
+﻿using Domain.Interfaces.Dto;
+
+namespace Domain.Interfaces.Service
 {
     public interface IBaseServices<TEntity, TDto> where TDto : IBaseDto
     {
