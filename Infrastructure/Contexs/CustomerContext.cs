@@ -11,5 +11,9 @@ namespace Infrastructure.Contexs
         }
 
         public DbSet<Customer> Customers { get; set; }
+
+        //protected override void OnModelCreation(ModelBuilder modelBuilder) {
+        //    modelBuilder.Entity<Customer>().ToTable(nameof(Customer), "Main");
+        //}
     }
 }

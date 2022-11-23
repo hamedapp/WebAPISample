@@ -31,6 +31,7 @@ namespace Infrastructure.Sevices
         public void Insert(CustomerDto dto)
         {
             var entity = _mapper.Map<TEntity>(dto);
+            
 
             _repository.Add(entity);
         }

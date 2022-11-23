@@ -1,4 +1,5 @@
-﻿using Domain.Interfaces.Service;
+﻿using Domain.Dtos;
+using Domain.Interfaces.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPISample.Controllers
@@ -20,6 +21,15 @@ namespace WebAPISample.Controllers
             var List =  _customerService.GetAll();
 
             return Ok(List);
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> Add(CustomerDto customerDto)
+        {
+            _customerService.Insert(customerDto);
+
+            return Ok("Ok");
         }
 
     }

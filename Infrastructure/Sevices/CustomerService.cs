@@ -23,7 +23,7 @@ namespace Infrastructure.Sevices
             var result = new List<CustomerDto>();
             if (data.Any())
             {
-                result = _mapper.Map<List<CustomerDto>>(data);
+                 result = _mapper.Map<List<CustomerDto>>(data);
 
                 return result;
             }

@@ -15,7 +15,10 @@ namespace Infrastructure.Repository
 
         public virtual T Add(T newEntity)
         {
+            newEntity.Created = DateTime.Now;
+
             var track = customerContext.Set<T>().Add(newEntity);
+            customerContext.SaveChanges();
 
             return track.Entity;
         }

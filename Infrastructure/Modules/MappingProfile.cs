@@ -9,7 +9,7 @@ namespace Infrastructure.Modules
         public MappingProfile()
         {
             CreateMap<Customer, CustomerDto>().ReverseMap();
-            CreateMap<List<Customer>, List<CustomerDto>>().ReverseMap();
+            //CreateMap<List<Customer>, List<CustomerDto>>().ReverseMap();
         }
     }
 }
