@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities
 {
-    public class Customer
+    public class Customer: BaseEntity
     {
         
         public string FirstName { get; set; }

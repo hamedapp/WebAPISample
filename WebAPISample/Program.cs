@@ -1,4 +1,7 @@
+using WebAPISample;
+
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 
@@ -13,3 +16,10 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+builder.Host.ConfigureDefaults(args)
+       //Uses Serilog instead of default .NET Logger
+       .ConfigureWebHostDefaults(webBuilder =>
+       {
+           webBuilder.UseStartup<Startup>();
+       });

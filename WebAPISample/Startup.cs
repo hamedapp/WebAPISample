@@ -1,4 +1,8 @@
-﻿namespace WebAPISample
+﻿using System;
+using Infrastructure.Contexs;
+using Microsoft.EntityFrameworkCore;
+
+namespace WebAPISample
 {
     public class Startup
     {
@@ -8,7 +12,12 @@
             _config = configuration;
         }
         public void ConfigureServices(IServiceCollection services)
-        { }
+{
+            services.AddDbContext<CustomerContext>(opt =>
+            {
+                opt.UseInMemoryDatabase("CustomerDb");
+            });
+        }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
