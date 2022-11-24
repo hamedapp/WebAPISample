@@ -31,7 +31,6 @@ namespace Domain.Repository
             {
                 //maybe soft delete
                 customerContext.Remove(entity);
-
             }
             customerContext.SaveChanges();
         }

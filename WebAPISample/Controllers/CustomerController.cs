@@ -29,7 +29,7 @@ namespace WebAPISample.Controllers
         {
             _customerService.Insert(customerDto);
 
-            return Ok("Ok");
+            return Ok();
         }
 
         [HttpPost]
@@ -38,16 +38,16 @@ namespace WebAPISample.Controllers
         {
             _customerService.Update(customerDto);
 
-            return Ok("Ok");
+            return Ok();
         }
 
-        [HttpGet]
+        [HttpDelete]
         [Route("[action]")]
         public IActionResult Delete(int Id)
         {
             _customerService.Delete(Id);
 
-            return Ok("Ok");
+            return Ok();
         }
     }
 }

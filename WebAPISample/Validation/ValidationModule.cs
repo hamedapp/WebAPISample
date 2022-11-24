@@ -9,9 +9,9 @@ namespace WebAPISample.Modules
         public ValidationModule()
         {
             RuleFor(x => x.PostalCode).NotEmpty();   
-            RuleFor(x => x.FirstName).Length(0, 20)
+            RuleFor(x => x.FirstName).NotEmpty().Length(0, 20)
                 .WithMessage("Name must be maximum 20 charachters.");
-            RuleFor(x => x.LastName).Length(0, 20)
+            RuleFor(x => x.LastName).NotEmpty().Length(0, 20)
                 .WithMessage("Name must be maximum 20 charachters.");
             //RuleFor(x => x.PostalCode).(10).MaximumLength(12)
             //    .WithMessage("Postal code must be 10 to 12 digit number");

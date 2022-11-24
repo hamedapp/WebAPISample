@@ -22,7 +22,7 @@ namespace WebAPISample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-               // .AddFluentValidation(options =>
+            // .AddFluentValidation(options =>
             //{
             //    // Validate child properties and root collection elements
             //    options.ImplicitlyValidateChildProperties = true;
@@ -37,16 +37,19 @@ namespace WebAPISample
 
             services.AddMvc();
 
-            services.AddDbContext<CustomerContext>(opt =>
-            {
-                opt.UseInMemoryDatabase("CustomerDb");
-            });
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.SuppressModelStateInvalidFilter = true;
             });
             services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ValidationModule>());
             services.AddScoped<IValidator<CustomerDto>, ValidationModule>();
+
+            services.AddDbContext<CustomerContext>(opt =>
+            {
+                opt.UseInMemoryDatabase("CustomerDb");
+            });
+
+            services.AddCors();
         }
 
         public void Configure(WebApplication app, IWebHostEnvironment env)
@@ -63,7 +66,9 @@ namespace WebAPISample
 
             app.UseHttpsRedirection();
             app.UseRouting();
-
+            app.UseCors(
+       options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+   );
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
