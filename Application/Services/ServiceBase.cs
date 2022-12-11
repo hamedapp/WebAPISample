@@ -3,7 +3,7 @@ using Domain.Dtos;
 using Domain.Entities;
 using Domain.Interfaces.Repository;
 
-namespace Domain.Sevices
+namespace Application.Services
 {
     public class ServiceBase<TEntity, TDto>
         where TEntity : BaseEntity
@@ -31,7 +31,7 @@ namespace Domain.Sevices
         public void Insert(CustomerDto dto)
         {
             var entity = _mapper.Map<TEntity>(dto);
-            
+
 
             _repository.Add(entity);
         }

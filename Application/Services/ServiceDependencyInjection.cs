@@ -1,15 +1,15 @@
-﻿using Domain.Interfaces.Service;
+﻿using Domain.Dtos;
+using Domain.Interfaces.Service;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Domain.Sevices
+namespace Application.Services
 {
-    public static class ServiceModuleExtentions
+    public static class ServiceDependencyInjection
     {
         public static void RegisterServices(this IServiceCollection services)
         {
             services.AddTransient<ICustomerServcie, CustomerService>();
-            //services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CustomerDto>());
-
         }
     }
 }

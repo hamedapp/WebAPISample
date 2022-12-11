@@ -5,15 +5,15 @@ namespace Domain.Modules
 {
     public static class RegisterModulesExtention
     {
-        public static IServiceCollection RegisterModules(this IServiceCollection services)
+        public static IServiceCollection RegisterMapperModules(this IServiceCollection services)
         {
-            var autoMapper = registerMapper();
+            var autoMapper = RegisterMapper();
             services.AddSingleton(autoMapper);
 
             return services;
         }
 
-        public static IMapper registerMapper()
+        public static IMapper RegisterMapper()
         {
             var mappingConfig = new MapperConfiguration(
                 mc =>

@@ -4,8 +4,7 @@ using Domain.Entities;
 using Domain.Interfaces.Repository;
 using Domain.Interfaces.Service;
 
-
-namespace Domain.Sevices
+namespace Application.Services
 {
     public class CustomerService : ServiceBase<Customer, CustomerDto>, ICustomerServcie
     {
