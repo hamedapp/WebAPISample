@@ -37,7 +37,9 @@ namespace Domain.Repository
 
         public virtual T Get(int Id)
         {
-            throw new NotImplementedException();
+            var entity = customerContext.Set<T>().FirstOrDefault(x => x.Id == Id);
+
+            return entity;
         }
 
         public virtual IEnumerable<T> GetAll()

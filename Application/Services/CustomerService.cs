@@ -3,6 +3,7 @@ using Domain.Dtos;
 using Domain.Entities;
 using Domain.Interfaces.Repository;
 using Domain.Interfaces.Service;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Application.Services
 {
@@ -32,7 +33,14 @@ namespace Application.Services
 
         public CustomerDto Get(int Id)
         {
-            throw new NotImplementedException();
+            var data = _repository.Get(Id);
+
+            if (data is null)
+            {
+                throw new Exception("not found");
+            }
+            var result = _mapper.Map<CustomerDto>(data);
+            return result;
         }
 
     }

@@ -1,9 +1,6 @@
-﻿using Domain.Dtos;
-using FluentValidation;
-using Domain.Contexs;
+﻿using Domain.Contexs;
 using Domain.Modules;
 using Domain.Repository;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPISample.Modules;
 using Application.Services;
@@ -21,33 +18,11 @@ namespace WebAPISample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-            //.AddFluentValidation(
-            //    fv =>
-            //    {
-            //        fv.RegisterValidatorsFromAssemblyContaining<ValidationModule>();
-
-            //    }
-            //    );
-            // .AddFluentValidation(options =>
-            //{
-            //    // Validate child properties and root collection elements
-            //    options.ImplicitlyValidateChildProperties = true;
-            //    options.ImplicitlyValidateRootCollectionElements = true;
-
-            //    // Automatic registration of validators in assembly
-            //    options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-            //}); 
+ 
             services.RegisterMapperModules();
             services.RegisterServices();
             services.RegisterRepositoris();
-
-            //services.AddMvc();
-
-            //services.Configure<ApiBehaviorOptions>(options =>
-            //{
-            //    options.SuppressModelStateInvalidFilter = true;
-            //});
+            
             services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ValidationModule>());
 
             services.AddDbContext<CustomerContext>(opt =>

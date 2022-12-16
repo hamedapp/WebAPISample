@@ -49,5 +49,14 @@ namespace WebAPISample.Controllers
 
             return Ok();
         }
+
+        [HttpGet]
+        [Route("[action]")]
+        public IActionResult Get([FromQuery(Name = "id")] int Id)
+        {
+            var result = _customerService.Get(Id);
+
+            return Ok(result);
+        }
     }
 }
