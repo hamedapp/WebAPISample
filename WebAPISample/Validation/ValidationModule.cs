@@ -13,8 +13,7 @@ namespace WebAPISample.Modules
                 .WithMessage("Name must be maximum 20 charachters.");
             RuleFor(x => x.LastName).NotEmpty().Length(0, 20)
                 .WithMessage("Name must be maximum 20 charachters.");
-            //RuleFor(x => x.PostalCode).(10).MaximumLength(12)
-            //    .WithMessage("Postal code must be 10 to 12 digit number");
+            
             RuleFor(x => x.Email).EmailAddress()
                 .WithMessage("Not Valid Email Address"); ;
             RuleFor(x => x.Mobile)
